@@ -1,0 +1,81 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Search Page
+
+{% endblock title %}
+
+
+{% block content %}
+
+
+        {% with results.count as total_results %}
+             {% if total_results %}
+                <h3> Found {{ total_results }} result{{ total_results|pluralize }}</h3>
+            {% else %}
+            <h3> Found 0 results</h3>
+             {% endif %}
+        {% endwith %}
+
+       
+{% for res in results %}
+            
+
+
+
+<div class="container" style="margin-top: 30px;">
+    <section class="cover">
+      
+        <div style="display: inline;">
+            <div class="card" style="margin-top: 25px;">
+                <div class="row no-gutters">
+                    <div class="col-sm-12">
+                        <div class="card-body">
+                            <a href="{{ res.get_absolute_url }}">
+                                <img src="{{ res.image.url }}" alt="" width="500px" height="300px"><br>
+                            </a>
+                           
+                            <span class = "ourtitle" class="card-title">{{ res.title }}[{{ res.auther }}]</span>
+                            
+                            <h5 class="card-title">{{ res.content }}</h5><hr>
+
+                            {% with comments.count as total_comments %}
+                                {{ total_comments }} comment{{ total_comments|pluralize }}
+                            {% endwith %}<br>
+
+
+
+                            {% for comment in comments %}
+                                 Comment {{ forloop.counter }} by {{ comment.name }}
+                                on {{ comment.publish }}
+                                {{ comment.content|linebreaks }}
+                            {% empty %}
+                                <p>There is no comments for this post!</p>
+                            {% endfor %}
+                        
+
+                        </div>
+                    </div>
+                </div><br>
+            </div>
+        </div>
+    </section>
+
+{% endfor %}
+
+
+
+
+
+
+
+
+<!--     
+    <form method="get">
+        {% csrf_token %}<br>
+        {{ form.as_table }}
+       <input type="submit" value="Search">
+    </form> -->
+
+
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Register Page 
+
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-dark">Register</button>
+    </form>
+    <p class="text-center">Have an account? <a href="{% url 'blog:login_user' %}">Login</a>.</p>
+
+{% endblock content %}
