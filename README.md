@@ -3,6 +3,21 @@
 ### Description
 Blog Application user can Add, Delete, Update post 
 
+### Project Structure 
+.
+├── blog
+│   ├── migrations
+│   │   └── __pycache__
+│   ├── __pycache__
+│   └── templates
+│       └── blog
+├── BlogProject
+│   └── __pycache__
+└── media
+    └── posts
+        ├── 11
+        ├── 3
+        
 ## Getting Started
 ### Pre-requisites and Local Development Server
 * run `` pip install -r requirements.txt `` 
