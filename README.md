@@ -1,10 +1,11 @@
-# Blog Application 
+# ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Django Blog Application 
 
 ### Description
-Blog Application user can Add, Delete, Update post 
+Blog Application user can Add, Delete, Update posts
 
-### Project Structure 
-``.
+# ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) Project Structure
+
+```
 ├── blog
 │   ├── migrations
 │   │   └── __pycache__
@@ -17,7 +18,8 @@ Blog Application user can Add, Delete, Update post
     └── posts
         ├── 11
         ├── 3
-``
+
+```
 ## Getting Started
 ### Pre-requisites and Local Development Server
 * run `` pip install -r requirements.txt `` 
