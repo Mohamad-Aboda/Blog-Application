@@ -1,30 +1,66 @@
-# ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) Django Blog Application 
+<h1 align="center">Blog Application</h1>
 
 ### Description
 Blog Application user can Add, Delete, Update posts
 
-# ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) Project Structure
+
+![-------------------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
+## Docker Setup:
 
 ```
-├── blog
-│   ├── migrations
-│   │   └── __pycache__
-│   ├── __pycache__
-│   └── templates
-│       └── blog
-├── BlogProject
-│   └── __pycache__
-└── media
-    └── posts
-        ├── 11
-        ├── 3
+docker-compose up --build
+```
+
+![-------------------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
+## Local Setup 👨‍💻:
+
+### 1.Virtual Environment Setup :
+
+##### For Linux :
 
 ```
-## Getting Started
-### Pre-requisites and Local Development Server
-* run `` pip install -r requirements.txt `` 
-* run `` python manage.py makemigrations `` 
-* run `` python manage.py migrate `` 
-* run `` python manage.py runserver ``
+$. python3 -m venv env
+$. source env/bin/activate
+```
 
-## The application is run at http://127.0.0.1:8000/
+##### For Windows :
+
+```
+$. py -m venv env
+$. env\Scripts\activate
+```
+
+![-------------------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
+#### 2. Installing Dependencies:
+
+```
+ pip install wheel
+ pip install -r requirements.txt
+```
+
+![-------------------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
+#### 3. Create Database Tables and Superuser:
+
+```
+Note: For Windows Users Replace python3 with python
+
+ python3 manage.py makemigrations
+ python3 manage.py migrate
+ python3 manage.py createsuperuser
+```
+
+![-------------------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
+### 6. Run Server
+
+```
+ python3 manage.py runserver
+```
+
+### 9. Go Live :
+
+http://localhost:8000/
