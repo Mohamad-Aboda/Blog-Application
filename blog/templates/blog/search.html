@@ -39,19 +39,6 @@
                             
                             <h5 class="card-title">{{ res.content }}</h5><hr>
 
-                            {% with comments.count as total_comments %}
-                                {{ total_comments }} comment{{ total_comments|pluralize }}
-                            {% endwith %}<br>
-
-
-
-                            {% for comment in comments %}
-                                 Comment {{ forloop.counter }} by {{ comment.name }}
-                                on {{ comment.publish }}
-                                {{ comment.content|linebreaks }}
-                            {% empty %}
-                                <p>There is no comments for this post!</p>
-                            {% endfor %}
                         
 
                         </div>
@@ -64,18 +51,6 @@
 {% endfor %}
 
 
-
-
-
-
-
-
-<!--     
-    <form method="get">
-        {% csrf_token %}<br>
-        {{ form.as_table }}
-       <input type="submit" value="Search">
-    </form> -->
 
 
 {% endblock content %}

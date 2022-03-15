@@ -51,11 +51,15 @@
               Categories
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {% for category in all_categories %}
-                  <a class="dropdown-item" href="/category/{{ category.name}}">
-                  {{ category.name|title }}
-                  </a>
-                {% endfor %}
+                  {% for category in all_categories %}
+                    <a class="dropdown-item" href="/category/{{ category.name}}">
+                    {{ category.name|title }}
+                    </a>
+                  
+                  {% empty %}
+                    <p> No category yet! </p>
+                  {% endfor %}
+                           
               </div>
         </li>
 

@@ -22,12 +22,13 @@ def home(request):
 def postDetail(request, post):
     post = get_object_or_404(Post, slug=post, status='published')
     comments = post.comments.filter(status=True)
-    user_comment = None 
+    auther = request.user 
     if request.method == "POST":
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
             user_comment = comment_form.save(commit=False)
-            user_comment.post = post 
+            user_comment.post = post
+            user_comment.name = auther
             user_comment.save()
             return redirect('/' + post.slug)
         
@@ -42,7 +43,6 @@ def postDetail(request, post):
 
 def category_list(request, category):
     category = Post.objects.filter(status = 'published', category__name=category)
-    print(category)
     return render(request, 'blog/category_list.html', {'category':category})
 
 
@@ -93,10 +93,9 @@ def createPost(request):
 
 @login_required(login_url='/login/')
 def updatePost(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    item = Post.objects.get(pk=pk)
+    item = get_object_or_404(Post, pk=pk)
     if request.user == item.auther and request.method == 'POST':
-        form = UpdatePostForm(request.POST,request.FILES, instance = item)
+        form = UpdatePostForm(request.POST,request.FILES,instance = item)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.auther = request.user 
@@ -116,9 +115,8 @@ def register(request):
         form = NewUserForm(request.POST)
         if form.is_valid():
             user = form.save() 
-            login(request, user)
             messages.success(request, 'Registration successful.')
-            return redirect('/')
+            return redirect('blog:login_user')
         else:
             messages.error(request, 'Unsuccessful registration. Invalid information.')
     
@@ -137,7 +135,7 @@ def login_user(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, f'You are logged in as {username}.')
-                return redirect('/')
+                return redirect('blog:home')
             else:
                 messages.error(request, 'Invalid username or password!')
         else:

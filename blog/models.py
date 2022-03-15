@@ -16,7 +16,7 @@ def get_registred_user(request):
 	return loged_user
 
 class Category(models.Model):
-	name = models.CharField(max_length=100, null=True)
+	name = models.CharField(max_length=100)
 
 	def __str__(self):
 		return f'{self.name}'
@@ -27,17 +27,17 @@ class Post(models.Model):
 		('draft', 'Draft'),
 	)
 
-	title = models.CharField(max_length=50, null=True)
-	content = models.CharField(max_length = 1000, null=True)
-	auther = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-	status = models.CharField(max_length=10, choices=CHOICES, default='publish', null=True)
-	published = models.DateTimeField(default=timezone.now, null=True)
-	created = models.DateTimeField(auto_now_add=True, null=True)
+	title = models.CharField(max_length=50)
+	content = models.TextField(max_length = 1000)
+	auther = models.ForeignKey(User, on_delete=models.CASCADE)
+	status = models.CharField(max_length=10, choices=CHOICES, default='publish')
 	# slug = models.AutoSlugField(populate_from = ['title',], unique_for_date='created', null=True)
-	slug = models.SlugField(null=True, unique_for_date='created')
-	updated = models.DateTimeField(auto_now = True, null=True)
 	category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
 	image = models.ImageField(upload_to = user_directory_path, default='posts/default.jpg')
+	published = models.DateTimeField(default=timezone.now)
+	updated = models.DateTimeField(auto_now = True)
+	created = models.DateTimeField(auto_now_add=True)
+	slug = models.SlugField(unique_for_date='created')
 
 
 	def get_absolute_url(self):
@@ -56,15 +56,12 @@ class Post(models.Model):
 		super(Post, self).save(*args, **kwargs)
 
 
-
-
-
 class Comment(models.Model):
 	post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
-	content = models.TextField(null=True)
+	content = models.TextField()
 	published = models.DateTimeField(auto_now_add=True)
 	status = models.BooleanField(default=True)
-	name = models.CharField(max_length=100, null=True)
+	name = models.CharField(max_length=100)
 
 
 	class Meta:

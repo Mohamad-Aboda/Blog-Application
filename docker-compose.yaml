@@ -1,0 +1,10 @@
+version: '3'
+services:
+    backend:
+        container_name: Blog
+        build: .
+        volumes:
+            - .:/app
+        ports:
+            - 8000:8000
+        
